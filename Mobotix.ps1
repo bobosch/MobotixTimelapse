@@ -187,7 +187,9 @@ $Items | ForEach-Object {
             If($Rename) {
                 $Name = $Taken.ToString('yyyy-MM-dd_HH-mm-ss') + $Event + '.jpg'
             } Else {
-                $Path = $Path + $_.Directory.Name + '\'
+                If ($_.Directory.Name -match '^\d{3}$') {
+                    $Path = $Path + $_.Directory.Name + '\'
+                }
             }
         } Else {
             $Path = $_.DirectoryName.Substring($Source.Length) + '\'
