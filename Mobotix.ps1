@@ -115,7 +115,7 @@ If($After) {
         $Step = $Items.Count
     }
     While($Step -gt 1) {
-        $Step = [math]::round($Step / 2)
+        $Step = [math]::floor($Step / 2)
         $Info = GetFileInformation($Items[$Pos].FullName)
         Write-Host "Pos $Pos Step $Step Taken $($Info.DateTimeOriginal)"
         If($Info.DateTimeOriginal -gt $After) {
@@ -137,7 +137,7 @@ If($Before) {
         $Step = $Items.Count
     }
     While($Step -gt 1) {
-        $Step = [math]::round($Step / 2)
+        $Step = [math]::floor($Step / 2)
         $Info = GetFileInformation($Items[$Pos].FullName)
         Write-Host "Pos $Pos Step $Step Taken $($Info.DateTimeOriginal)"
         If($Info.DateTimeOriginal -lt $Before) {
@@ -190,7 +190,7 @@ $Items | ForEach-Object {
                 $Path = $Path + $_.Directory.Name + '\'
             }
         } Else {
-    	    $Path = $_.DirectoryName.Substring($Source.Length) + '\'
+            $Path = $_.DirectoryName.Substring($Source.Length) + '\'
         }
 
         If($Path) {
